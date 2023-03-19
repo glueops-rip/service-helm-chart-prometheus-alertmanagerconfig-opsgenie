@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}
 spec:
   route:
-    groupBy: {{ .Values.route.groupBy }}
+    groupBy: [...]
     repeatInterval: {{ .Values.route.repeatInterval }}
     groupInterval: {{ .Values.route.groupInterval }}
     receiver: {{ .Release.Name }}

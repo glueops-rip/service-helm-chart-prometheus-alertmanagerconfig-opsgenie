@@ -12,6 +12,5 @@ labels:
   alertname: nil
 
 route:
-  groupBy: [...]
   repeatInterval: "360m"
   groupInterval: "360m"
