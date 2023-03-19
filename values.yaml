@@ -6,10 +6,6 @@ vault_path: nil
 opsgenie:
   apikey: nil
 
-slack:
-  webhook: nil
-  channel: nil
-
 labels:
   team: nil
   component: nil
