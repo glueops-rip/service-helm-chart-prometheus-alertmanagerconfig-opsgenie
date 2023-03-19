@@ -1,0 +1,1 @@
+# service-helm-chart-prometheus-alertmanagerconfig-opsgenie
