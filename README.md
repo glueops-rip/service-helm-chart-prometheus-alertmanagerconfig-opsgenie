@@ -1,1 +1,1 @@
-# service-helm-chart-prometheus-alertmanagerconfig-opsgenie
+# service-helm-chart-mma-alertmanager-config

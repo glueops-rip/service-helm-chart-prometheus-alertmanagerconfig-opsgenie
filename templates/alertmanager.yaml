@@ -1,0 +1,74 @@
+{{ if eq .Values.receiverType "opsgenie" }}
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  route:
+    groupBy: {{ .Values.route.groupBy }}
+    repeatInterval: {{ .Values.route.repeatInterval }}
+    groupInterval: {{ .Values.route.groupInterval }}
+    receiver: {{ .Release.Name }}
+    matchers:
+    - name: namespace
+      value: {{ .Release.Namespace }}
+{{ if ne (toString .Values.labels.team) "nil" }}
+    - name: team
+      value: {{ .Values.labels.team }}
+{{ end }}
+{{ if ne (toString .Values.labels.component) "nil" }}
+    - name: component
+      value: {{ .Values.labels.component }}
+{{ end }}
+{{ if ne (toString .Values.labels.alertname) "nil" }}
+    - name: alertname
+      value: {{ .Values.labels.alertname }}
+{{ end }}
+  receivers:
+  - name: {{ .Release.Name }}
+    opsgenieConfigs:
+    - apiKey:
+        key: opsgenie_apikey
+        name: {{ .Release.Name }}
+      apiURL: "https://api.opsgenie.com/"
+      sendResolved: true
+      updateAlerts: true
+{{ end }}
+{{ if eq .Values.receiverType "slack" }}
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  route:
+    groupBy: {{ .Values.route.groupBy }}
+    repeatInterval: {{ .Values.route.repeatInterval }}
+    groupInterval: {{ .Values.route.groupInterval }}
+    receiver: {{ .Release.Name }}
+    matchers:
+{{ if ne (toString .Values.labels.team) "nil" }}
+    - name: team
+      value: {{ .Values.labels.team }}
+{{ end }}
+{{ if ne (toString .Values.labels.namespace) "nil" }}
+    - name: namespace
+      value: {{ .Values.labels.namespace }}
+{{ end }}
+{{ if ne (toString .Values.labels.component) "nil" }}
+    - name: component
+      value: {{ .Values.labels.component }}
+{{ end }}
+{{ if ne (toString .Values.labels.alertname) "nil" }}
+    - name: alertname
+      value: {{ .Values.labels.alertname }}
+{{ end }}
+  receivers:
+  - name: {{ .Release.Name }}
+    slackConfigs:
+    - apiURL: 
+        key: slack_webhook
+        name: {{ .Release.Name }}
+      channel: {{ .Values.slack.channel | quote }}
+      sendResolved: true
+{{ end }}
+

@@ -1,0 +1,21 @@
+
+# Set either opsgenie or slack, but not both
+receiverType: slack # or opsgenie
+vault_path: nil
+
+opsgenie:
+  apikey: nil
+
+slack:
+  webhook: nil
+  channel: nil
+
+labels:
+  team: nil
+  component: nil
+  alertname: nil
+
+route:
+  groupBy: [...]
+  repeatInterval: "360m"
+  groupInterval: "360m"
