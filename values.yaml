@@ -1,6 +1,4 @@
 
-# Set either opsgenie or slack, but not both
-receiverType: slack # or opsgenie
 vault_path: nil
 
 opsgenie:
