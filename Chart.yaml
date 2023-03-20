@@ -1,6 +1,6 @@
 apiVersion: v2
 name: prometheus-alertmanagerconfig-opsgenie
-description: A Helm chart for Kubernetes
+description: This chart creates an alertmanager configuration for OpsGenie.
 
 # A chart can be either an 'application' or a 'library' chart.
 #
