@@ -1,0 +1,17 @@
+# -- Path for to the `opsgenie_apikey` in vault. They key must be named `opsgenie_key`. The path can be anything ex. `secret/kv-v2-glueops/notifications`
+vault_path: nil
+
+opsgenie:
+  # -- Leave this value as `nil` if you provided a `vault_path`. Otherwise, this value must be set. You CANNOT have a `vault_path` and `opsgenie.apikey` defined at the same time.
+  apikey: nil
+
+# -- These labels are additional filters you can use to keep these notifications for one particular team, component, or alert. Note: you must set the same filters (with the exception of alertname) on the alert definition itself. The alert definition is also refered to as the prometheusrule.
+labels:
+  team: nil
+  component: nil
+  alertname: nil
+
+# -- Amount of time to fire an alert again after the first one is sent.
+route:
+  repeatInterval: "360m"
+  groupInterval: "360m"
